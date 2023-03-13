@@ -17,8 +17,8 @@ void List::insert(std::string data)
 void List::insert(int loc, std::string data)
 {
 	Node *walker, *trailer;
-	walker = this->head; // start of the list
-	trailer = nullptr; // one behind
+	walker = this->head;
+	trailer = nullptr;
 	
 	while(loc>0 && walker != nullptr)
 	{
@@ -89,19 +89,37 @@ void List::remove(int loc)
 	Node *walker, *trailer;
 	walker = this->head;
 	trailer = nullptr;
-	for(int i=0; i<loc; i++)
+	while(loc>0 && walker != nullptr)
 	{
+		loc=loc-1;
 		trailer = walker;
 		walker = walker->getNext();
 	}
-	trailer->setNext(walker->getNext());
-	walker->setNext(nullptr);
-	walker->setData("");
+	if(walker == nullptr)
+	{
+		throw std::out_of_range("Tried to remove out of range");
+	}
+	if(trailer == nullptr)
+	{
+		head = walker->getNext();
+		delete walker;
+	} else {
+		trailer->setNext(walker->getNext());
+		delete walker;
+	}
 }
 
 List::~List()
 {
-	delete head;
+	std::cerr << "Calling the destructor\n";
+	Node *walker = head;
+	Node *trailer = nullptr;
+	while(walker != nullptr)
+	{
+		trailer = walker;
+		walker = walker->getNext();
+		delete trailer;
+	}
 }
 
 

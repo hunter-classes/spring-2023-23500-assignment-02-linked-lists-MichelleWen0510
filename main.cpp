@@ -24,7 +24,9 @@ int main()
 	std::cout << "Does it contain c: " << l->contains("c") << "\n";
 	std::cout << "Does it contain z: " << l->contains("z") << "\n";
 	l->remove(2);
-	std::cout << l->toString() << l->length() << "\n";
+	std::cout << "Removed second item: " <<  l->toString() << l->length() << "\n";
+
+	delete l; //Uses deconstructor and then deletes the list
 
 	return 0;
 }
