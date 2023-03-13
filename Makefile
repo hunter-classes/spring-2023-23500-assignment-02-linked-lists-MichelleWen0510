@@ -1,10 +1,10 @@
-main: main.o OList.o Node.o
-	g++ -o main main.o OList.o Node.o
+main: main2.o OList.o Node.o
+	g++ -o main main2.o OList.o Node.o
 
 tests: tests.o OList.o Node.o
 	g++ -o tests tests.o OList.o Node.o
 
-main.o: main.cpp OList.h Node.h
+main2.o: main2.cpp OList.h Node.h
 
 tests.o: tests.cpp OList.h Node.h
 
